@@ -4,10 +4,31 @@
 temp <- tempfile()
 download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip",destfile=temp,method="curl")
 
+trainTmp <- read.table(unz(temp, "UCI HAR Dataset/train/X_train.txt"))
+testTmp <- read.table(unz(temp, "UCI HAR Dataset/test/X_test.txt"))
+
+XData <- rbind(trainTmp, testTmp)
+
+trainTmp <- read.table(unz(temp, "UCI HAR Dataset/train/subject_train.txt"))
+testTmp <- read.table(unz(temp, "UCI HAR Dataset/test/subject_test.txt"))
+Subject <- rbind(trainTmp, testTmp)
+
+
+trainTmp <- read.table(unz(temp, "UCI HAR Dataset/train/y_train.txt"))
+testTmp <- read.table(unz(temp, "UCI HAR Dataset/test/y_test.txt"))
+YData <- rbind(trainTmp, testTmp)
+
+# * Extracts only the measurements on the mean and standard deviation for each measurement. 
+
+features <- read.table(unz(temp, "UCI HAR Dataset/features.txt"))
+activity_labels <- read.table(unz(temp, "UCI HAR Dataset/activity_labels.txt"))
+
 unlink(temp)
 
 
-# * Extracts only the measurements on the mean and standard deviation for each measurement. 
+
+
+
 # * Uses descriptive activity names to name the activities in the data set
 # Appropriately labels the data set with descriptive variable names. 
 # * From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
