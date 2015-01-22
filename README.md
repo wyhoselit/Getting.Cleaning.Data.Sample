@@ -4,3 +4,4 @@ The purpose of this project is to demonstrate your ability to collect, work with
 
 * https://class.coursera.org/getdata-010/human_grading/view/courses/973497/assessments/3/submissions
 
+Run test.R ($ Rscript test.R) to get Analysis Data.
