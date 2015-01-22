@@ -36,6 +36,31 @@ names(YData) <- "Activity"
 
 names(Subject) <- "Subject"
 # Appropriately labels the data set with descriptive variable names. 
-labeledData <- cbind(Subject,XData,YData)
+labeledData <- cbind(Subject,YData,XData)
 
 # * From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+
+
+allSubjects = length(unique(Subject)[,1])
+allActivities = length(activityLabels[,1])
+
+avgData <- labeledData[1:(allSubjects * allActivities),]
+
+currentRow = 1
+numCols = ncol(labeledData)
+
+for( s in unique(Subject)[,1]){
+        for( a in activityLabels[,2]){
+                avgData[currentRow,1] = s
+                avgData[currentRow,2] = a
+                c <- labeledData[labeledData$Subject== s & labeledData$Activity == a,]
+                avgData[currentRow,3:numCols] <- colMeans(c[,3:numCols])
+                currentRow = currentRow +1
+        }
+}
+
+if(!file.exists("export")) {dir.create("export")}
+
+avgDataExport <- file.path(getwd(), "export/average_of_activity_subject.csv")
+write.table(avgData, avgDataExport)
