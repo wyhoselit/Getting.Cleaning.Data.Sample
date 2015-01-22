@@ -21,11 +21,14 @@ YData <- rbind(trainTmp, testTmp)
 # * Extracts only the measurements on the mean and standard deviation for each measurement. 
 
 features <- read.table(unz(temp, "UCI HAR Dataset/features.txt"))
-activity_labels <- read.table(unz(temp, "UCI HAR Dataset/activity_labels.txt"))
+activityLabels <- read.table(unz(temp, "UCI HAR Dataset/activity_labels.txt"))
 
 unlink(temp)
 
+indexFocus <- grep ("-mean\\(\\)|-std\\(\\)", features[,2])
+XData <- XData[,indexFocus]
 
+names(XData) <- features[indexFocus,2]
 
 
 
