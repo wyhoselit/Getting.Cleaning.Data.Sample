@@ -1,8 +1,13 @@
 # Getting.Cleaning.Data.Sample
 The purpose of this project is to demonstrate your ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis.
 
-Run test.R ($ Rscript test.R) to get Analysis Data.
+# How to Run this Script
 
+ * Directly from Unix run:
+  * $ `Rscript test.R`
+ * or direct from R:
+  * `source("run_analysis.R")`
+ * will perform the following to clean up and export analysis data to: "export/mean_of_activity_subject.csv"
 
 
 # Reference
