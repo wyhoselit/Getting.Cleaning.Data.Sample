@@ -43,9 +43,7 @@ if(file.exists(analysisDataFile)){
                                 tbl_df(.) %>%
                                         select(indexFocus)
                    ) 
-?rename
-
-        colnames(XData) <- select(filter(features, V1 %in% indexFocus), V2)$V2
+        colnames(XData) <- gsub("\\(|\\)", "", select(filter(features, V1 %in% indexFocus), V2)$V2)
 
 #         XData
 #         dim(XData)
