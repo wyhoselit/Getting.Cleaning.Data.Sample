@@ -65,24 +65,29 @@ These signals were used to estimate variables of the feature vector for each pat
 - tBodyAccJerk-XYZ
 - tBodyGyro-XYZ
 - tBodyGyroJerk-XYZ
+- = 3*5 = 15
 - tBodyAccMag
 - tGravityAccMag
 - tBodyAccJerkMag
 - tBodyGyroMag
 - tBodyGyroJerkMag
+- =5
 - fBodyAcc-XYZ
 - fBodyAccJerk-XYZ
 - fBodyGyro-XYZ
+- =3*3 = 15
 - fBodyAccMag
 - fBodyAccJerkMag
 - fBodyGyroMag
 - fBodyGyroJerkMag
-17*2
-54
+- =4
+
 The set of variables that were estimated from these signals are:
 
 - mean: Mean value
 - std: Standard deviation
+
+### 33 feature with mean and standard deviation = 66 measurement with Subject and Activity = 68 columns.
 
 ## Activity
 
@@ -93,5 +98,9 @@ The set of variables that were estimated from these signals are:
 - STANDING
 - LAYING
 
+### 6 Activity with 30 volunteers = 180 rows.
+
+
+# The analysis data is dimension of 180 x 68.
 
 ### Finally, Sorry for my broken English :P
