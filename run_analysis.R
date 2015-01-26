@@ -1,5 +1,3 @@
-# You should create one R script called run_analysis.R that does the following. 
-# * Merges the training and the test sets to create one data set.
 analysisDataFile <- file.path(getwd(), "data/AnalysisData.csv")
 usePackage <- function(p) {
         if (!is.element(p, installed.packages()[,1]))
@@ -29,12 +27,7 @@ if(file.exists(analysisDataFile)){
 
         features <-tbl_df( read.table(unz(temp, "UCI HAR Dataset/features.txt")))
 
-        #         colnames(XData) <- select(features, V1)$V1
-        #         print(names(XData))
-        #         ?pmatch
-        #         ?select #contains
         indexFocus <- grep ("-mean\\(\\)|-std\\(\\)", features$V2)
-        #         indexFocus
         XData <- rbind_list(
                         read.table(unz(temp, "UCI HAR Dataset/train/X_train.txt")) %>%
                                 tbl_df(.) %>%
@@ -44,11 +37,6 @@ if(file.exists(analysisDataFile)){
                                         select(indexFocus)
                    ) 
         colnames(XData) <- gsub("\\(|\\)", "", select(filter(features, V1 %in% indexFocus), V2)$V2)
-
-#         XData
-#         dim(XData)
-#         
-#         Xdata <- dbl_df(Xdata)
         print(paste("Memory Size of X :", format(object.size(XData),"auto")))
 
         Subject <- rbind_list(
@@ -63,24 +51,9 @@ if(file.exists(analysisDataFile)){
         print(paste("Memory Size of YData origin:", format(object.size(YData),"auto")))    
         
         activityLabels <- tbl_df(read.table(unz(temp, "UCI HAR Dataset/activity_labels.txt")))
-#         print(activityLabels)
-#         print(class(activityLabels))       
         
         unlink(temp)
 
-#         print(features)
-#         print(class(features))
-#         print(dim(features))
-#         print(names(XData))
-#         print(dim(XData))
-        
-        
-        #         ?colnames
-#         str(select(features, V2)$V2)
-   
-#         print (dim(XData))
-
-#         print(names(XData))
         #         * Uses descriptive activity names to name the activities in the data set
         YData <-YData %>%
                 inner_join(activityLabels, by = "V1") %>%
@@ -91,8 +64,6 @@ if(file.exists(analysisDataFile)){
         
         # Appropriately labels the data set with descriptive variable names. 
         print("Already get Analysis Data. Combine all in one table.")
-#         ?cbind_list
-# http://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html
         analysisData <- tbl_df(
                 bind_cols(Subject,
                            YData,
@@ -108,8 +79,6 @@ if(file.exists(analysisDataFile)){
 print(paste("Memory Size of labeled Data:", format(object.size(analysisData),"auto")))
 
 print("Tidy data set with the average of each variable for each activity and each subject")
-# http://stackoverflow.com/questions/21644848/summarizing-multiple-columns-with-dplyr
-# ?summarise_each
 analysisMeanData <- analysisData %>%
                 group_by(Subject,Activity) %>%
                         summarise_each(funs(mean)) %>%
