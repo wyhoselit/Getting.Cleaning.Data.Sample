@@ -21,7 +21,6 @@ if(file.exists(analysisDataFile)){
         download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip",destfile=temp,method="curl")
         
         print("Merges Training and Test Data.")
-#         ?rbind_list
         # * Extracts only the measurements on the mean and standard deviation for each measurement. 
         print("Extracts only the measurements on the mean and standard deviation from features")
 
